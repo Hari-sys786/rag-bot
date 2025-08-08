@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="EUC Score: Your ultimate guide to vendor-independent end-user computing (EUC) performance benchmarking - organized, valid and repeatable.">
+<meta name="keywords" content="EUC, DaaS, DEX, benchmarking">
+<meta name="author" content="Benny Tritsch">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title>EUC Score - Documentation</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../css/favicon-32x32.png">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/font-awesome.min.css">
+
+<!-- Main css -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet"> -->
+
+</head>
+<body>
+
+<!-- PRE LOADER -->
+
+<div class="preloader">
+     <div class="sk-spinner sk-spinner-wordpress">
+          <span class="sk-inner-circle"></span>
+     </div>
+</div>
+
+<!-- Begin Navigation section  -->
+<script src="../js/eucscore-folder-navigation.js"></script>
+<!-- End Navigation section  -->
+
+
+<!-- Begin Home Section -->
+
+<section id="home" class="main-docs parallax-section">
+     <div class="container">
+          <div class="row">
+               <div class="col-md-12 col-sm-12">
+                <img src="../images/EUCScore-Tools.png" class="img-responsive" alt="Docs Image">
+               </div>
+          </div>
+     </div>
+</section>
+
+<!-- End Home Section -->
+
+
+<!-- Begin Docs Section -->
+
+<section id="docs">
+     <div class="container">
+          <div class="row">
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="docs-thumb">
+                         <p>[<a href="index.html">EUC Score Toolset Documentation Start Page</a>] [<a href="#sdk">Tools Included in the Simload SDK</a>]</p>
+                         <h2>Supplementary Tools</h2>
+                         <p>The supplementary tools are functioning in a supporting capacity. Typically they add specific functionalities
+                              or they extend the EUC Score scope and the range of use cases.</p>
+                         <ul>
+                              <li><a href="#dataminer">Data Miner</a></li>
+                              <li><a href="#telemetryeditor">Telemetry Editor</a></li>
+                              <li><a href="#getvideoadapters">Get Video Adapters</a></li>
+                              <li><a href="#sdk">Simload SDK Tools</a></li>
+                         </ul>
+                         <p>All supplementary tools and configuration files are located in the Tools folder or in the Tools\Telemetry subfolder.</p>
+                         
+                         <h3><a name="dataminer"></a>DataMiner.exe</h3>
+                         <p><strong>Data Miner</strong> is part of the EUC Score Base Package and it is also available as a stand-alone download package.
+                              It combines several supplementary tools from previous EUC Score versions, such as Startup Simload, Telemetry Tracker, Telemetry Splash and Telemetry Spy. 
+                              Use cases for Data Miner are storing inventory data, collecting telemetry data for a configurable time while manually interacting with test applications,
+                              automatically running applications on user logon, and establishing a system-wide "flight data recorder" allowing for digital forensic investigations.
+                              By default, on double-click or when launched from the command line, Data Miner reads the Telemetry.ini configuration file in the telemetry subfolder and opens in GUI mode. 
+                         </p>
+                         <p>&nbsp;</p>
+                         <img src="../images/DataMinerGUI.png" class="img-responsive" alt="Data Miner">
+                         <p>&nbsp;</p>
+                         <p>The functionalities behind menu items and buttons are as follows:</p>
+                         <ul>
+                              <li><strong>Load</strong>: Load a new Data Miner configuration file. The default file is Telemetry.ini.</li>
+                              <li><strong>Edit</strong>: View, change and save the Data Miner configuration file.</li>
+                              <li><strong>SysInfo</strong>: Write system information to a time-stamped text file in the results folder.</li>
+                              <li><strong>Inventory</strong>: Write multiple CSV files with inventory data in the results folder.</li>
+                              <li><strong>Results</strong>: View CSV and text files in the results folder.</li>
+                              <li><strong>Displays</strong>: Show display number on each monitor for five seconds.</li>
+                              <li><strong>About</strong>: Open dialg box with Data Miner information and the results folder path.</li>
+                              <li><strong>Exit</strong>: Exit Data Miner and store window location in the registry.</li>
+                              <li><strong>Start/Stop Data Collection</strong>: A click on this button starts or stops the telemetry data collection as configured in the configuration file.</li>
+                              <li><strong>View/Close Live Data</strong>: This button is enabled when the data collection was started and if clicked it opens or closes a real-time view on the telemetry data.</li>
+                         </ul>
+                         <p>&nbsp;</p>
+                         <p>Data Miner writes all collected telemetry, system and inventory data files into the results folder.
+                              The location of the results folder is either defined by registry setting (HKEY_LOCAL_MACHINE\Software\EucScore\Folders\Results or HKEY_CURRENT_USER\Software\EucScore\Folders\Results) or
+                              by existence of the .\..\Results\ folder. If none of these exist, then the data files are stored in the Public Documents\EUCScore\Results folder.
+                              The Public Documents folder is typically located at C:\Users\Public\Documents. You can always check the current location of the results folder by opening the About dialog.
+                         </p>
+                         <p>When running DataMiner.exe with the -nogui parameter from the command line, it doesn't show a graphical user interface.
+                              If no other parameter is provided, the settings in Telemetry.ini are applied.
+                              The collection of telemetry data can be stopped from the command line by running <strong>DataMinerStop.exe</strong>.
+                              Additional Data Miner parameters can either assign a new configuration file or overwrite settings, both in GUI mode or in CMD mode.
+                         </p>
+                         <table class="table">
+                              <thead class="thead">
+                                   <tr>
+                                        <th scope="col" style="width: 20%; vertical-align: bottom">Parameter</th>
+                                        <th scope="col" style="width: 80%; vertical-align: bottom">Description</th>
+                                   </tr>
+                              </thead>
+                              <tbody>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-nogui</td>
+                                        <td style="width: 80%; vertical-align: top">Run DataMiner.exe without GUI (= CMD mode)</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-inifile</td>
+                                        <td style="width: 80%; vertical-align: top">Configuration file in INI format. If this INI file is not found, default values are used (default: Telemetry.ini)</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-maxcycles</td>
+                                        <td style="width: 80%; vertical-align: top">Number of cycles telemetry data is collected, defined in the [PerfCounters] section of the INI file (default: 45)</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-countdown</td>
+                                        <td style="width: 80%; vertical-align: top">Number of seconds before the telemetry data collection starts. If greater than 0, then show a visible countdown in the top left corner of the default screen (default: 0)</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-extra</td>
+                                        <td style="width: 80%; vertical-align: top">A string that is added to the name of CSV output files containing the collected telemetry data.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-processes</td>
+                                        <td style="width: 80%; vertical-align: top">Collects the number of processes defined in the [Processes] section of the INI file</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-trigger</td>
+                                        <td style="width: 80%; vertical-align: top">Defined in the [Trigger] section of the INI file. Collects CPU consumption of all processes when counter value is greater than threshold, then sleeps for # of cycles</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-activityrecorder</td>
+                                        <td style="width: 80%; vertical-align: top">Collects mouse and keyboard activities and writes them to a REF file if enabled</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-apppath</td>
+                                        <td style="width: 80%; vertical-align: top">Runs the application specified</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-appparam</td>
+                                        <td style="width: 80%; vertical-align: top">Optional application command-line parameters</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 20%; vertical-align: top">-getinfo</td>
+                                        <td style="width: 80%; vertical-align: top">Ignores all other parameters and writes system information and inventory files to the results folder.</td>
+                                   </tr>
+                              </tbody>
+                         </table>
+                         <p>&nbsp;</p>
+                         <p>An INI-based configuration file for Data Miner consists of plain text with a structure and syntax comprising key-value pairs organized in sections.
+                              A line that starts with "#" is commented out. Empty lines are also removed. The "Setting" column in the table below represents the label in the Data Miner GUI or the friendly name.
+                         </p>
+                         <table class="table">
+                              <thead class="thead">
+                                   <tr>
+                                        <th scope="col" style="width: 15%; vertical-align: bottom">Setting</th>
+                                        <th scope="col" style="width: 15%; vertical-align: bottom">INI Section</th>
+                                        <th scope="col" style="width: 15%; vertical-align: bottom">INI Key</th>
+                                        <th scope="col" style="width: 55%; vertical-align: bottom">Description</th>
+                                   </tr>
+                              </thead>
+                              <tbody>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Max. Cycles</td>
+                                        <td style="width: 15%; vertical-align: top">Common</td>
+                                        <td style="width: 15%; vertical-align: top">MaxCycles</td>
+                                        <td style="width: 55%; vertical-align: top">Maximum number of cycles. Default is 45.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Interval</td>
+                                        <td style="width: 15%; vertical-align: top">Common</td>
+                                        <td style="width: 15%; vertical-align: top">IntervalInSec</td>
+                                        <td style="width: 55%; vertical-align: top">Interval in seconds between cycles. Default is 1.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Countdown</td>
+                                        <td style="width: 15%; vertical-align: top">Common</td>
+                                        <td style="width: 15%; vertical-align: top">CountDown</td>
+                                        <td style="width: 55%; vertical-align: top">Number of seconds until application starts. A small label in the top left corner of the default monitor shows the remaining seconds. Default is 0 (no).</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">AutoRun</td>
+                                        <td style="width: 15%; vertical-align: top">Common</td>
+                                        <td style="width: 15%; vertical-align: top">AutoRun</td>
+                                        <td style="width: 55%; vertical-align: top">On Data Miner launch, immediately start the data collection according to the settings in the configuration file. Default is 0.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Hide GUI</td>
+                                        <td style="width: 15%; vertical-align: top">Common</td>
+                                        <td style="width: 15%; vertical-align: top">Hide</td>
+                                        <td style="width: 55%; vertical-align: top">Hide the GUI while collecting telemetry data.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Cycle #</td>
+                                        <td style="width: 15%; vertical-align: top">--</td>
+                                        <td style="width: 15%; vertical-align: top">--</td>
+                                        <td style="width: 55%; vertical-align: top">Current cycle number. Constantly updated in the GUI when telemetry data is being collected.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Counters</td>
+                                        <td style="width: 15%; vertical-align: top">PerfCounters</td>
+                                        <td style="width: 15%; vertical-align: top">Enabled</td>
+                                        <td style="width: 55%; vertical-align: top">Collects performance counters in the list if enabled. Default is 1 (yes).</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Processes</td>
+                                        <td style="width: 15%; vertical-align: top">Processes</td>
+                                        <td style="width: 15%; vertical-align: top">Enabled</td>
+                                        <td style="width: 55%; vertical-align: top">Collects the number of processes in the list if enabled. Default is 0 (no).</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">Enabled</td>
+                                        <td style="width: 55%; vertical-align: top">Collects CPU consumption of processes when counter value is greater than threshold. Default is 0 (no).</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Sleep Cycles</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">SleepCycles</td>
+                                        <td style="width: 55%; vertical-align: top">Number of sleep cycles after data collection was triggered. Default is 30.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">CPU Counter</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">CpuCounter</td>
+                                        <td style="width: 55%; vertical-align: top">CPU counter number in the PerfCounters section. Default is 1.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">CPU Threshold</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">CpuThreshold</td>
+                                        <td style="width: 55%; vertical-align: top">CPU threshold in percent. Default is 90.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">IOPS Counter</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">IopsCounter</td>
+                                        <td style="width: 55%; vertical-align: top">IOPS counter number in the PerfCounters section. Default is 7.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">IOPS Threshold</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">IopsThreshold</td>
+                                        <td style="width: 55%; vertical-align: top">IOPS threshold. Default is 1000.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Process Counter</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">ProcCounter</td>
+                                        <td style="width: 55%; vertical-align: top">Process counter number in the PerfCounters section. Default is 10.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Process Threshold</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 15%; vertical-align: top">ProcThreshold</td>
+                                        <td style="width: 55%; vertical-align: top">Process threshold. Default is 1000.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Activity Log</td>
+                                        <td style="width: 15%; vertical-align: top">ActivityRecorder</td>
+                                        <td style="width: 15%; vertical-align: top">Enabled</td>
+                                        <td style="width: 55%; vertical-align: top">Collects mouse and keyboard activities and writes them into a REF file. Default is 0 (no).</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">App Launch</td>
+                                        <td style="width: 15%; vertical-align: top">RunApp</td>
+                                        <td style="width: 15%; vertical-align: top">Enabled</td>
+                                        <td style="width: 55%; vertical-align: top">Runs application or Simload if enabled.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">App Name</td>
+                                        <td style="width: 15%; vertical-align: top">RunApp</td>
+                                        <td style="width: 15%; vertical-align: top">FullAppPath</td>
+                                        <td style="width: 55%; vertical-align: top">Full path and name of the application.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">App Param</td>
+                                        <td style="width: 15%; vertical-align: top">RunApp</td>
+                                        <td style="width: 15%; vertical-align: top">AppParam</td>
+                                        <td style="width: 55%; vertical-align: top">Application command-line parameters.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Driver Info</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">DriverInfo</td>
+                                        <td style="width: 55%; vertical-align: top">Collect driver information and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Service Info</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">ServiceInfo</td>
+                                        <td style="width: 55%; vertical-align: top">Collect Windows Service information and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">User Sessions</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">UserSessions</td>
+                                        <td style="width: 55%; vertical-align: top">List current user sessions and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Proc Info</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">ProcInfo</td>
+                                        <td style="width: 55%; vertical-align: top">Collect currently running process details and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Session Proc Info</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">SessionProcInfo</td>
+                                        <td style="width: 55%; vertical-align: top">Collect process details in session context and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Proc Times</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">Trigger</td>
+                                        <td style="width: 55%; vertical-align: top">Collect current process CPU load as if triggered and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Task List</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">TaskList</td>
+                                        <td style="width: 55%; vertical-align: top">Collect process details similar to Task Manager and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Win Info</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">WinInfo</td>
+                                        <td style="width: 55%; vertical-align: top">Collect window details and store data in a CSV file.</td>
+                                   </tr>
+                                   <tr>
+                                        <td style="width: 15%; vertical-align: top">Win Events</td>
+                                        <td style="width: 15%; vertical-align: top">Inventory</td>
+                                        <td style="width: 15%; vertical-align: top">Events</td>
+                                        <td style="width: 55%; vertical-align: top">List RDS-relevant events of the last 24 hours and store data in a CSV file.</td>
+                                   </tr>
+                              </tbody>
+                         </table>
+                         <p>&nbsp;</p>
+                         <p><strong>Use Case 1</strong>: Collecting telemetry data can be initiated by a simple click on the Start Data Collection button. The performance counters, the maximum number of cycles,
+                              the interval in seconds, the countdown and all other optional settings can be modified in the configuration file. This is the most popular Data Miner use case.
+                         </p>
+                         <p><strong>Use Case 2</strong>: Collecting system information or inventory data only requires a click on the respective menu items SysInfo or Inventory. 
+                              The resulting data files are stored in the results folder. 
+                              They can be viewed through a click on the Results menu item which opens an Open Result File dialog box which filters by either .csv or .txt file extension.
+                         </p>
+                         <p><strong>Use Case 3</strong>: Launching an application or Simload on user logon is another Data Miner use case. 
+                              This can be very helpful if a synthetic or "noisy neighbor" user session was initiated by a logon simulator or by a scripted remoting client software.
+                              Requirements are the correct settings of the Enabled, FullAppPath and AppParam values in the RunApp section of the configuration file
+                              and the creation of a shortcut to DataMiner.exe -nogui in C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp.
+                         </p>
+                         <p><strong>Use Case 4</strong>: The "flight data recorder" mode can be enabled by launching Data Miner in a system context from Task Scheduler. 
+                              The trigger can be on a daily schedule with a start time in the morning or at startup of the system.
+                              The program that is started on the trigger is DataMiner.exe with the -nogui argument.
+                              Another optional argument is -inifile followed by a custom configuration file for this purpose.
+                              If you set the values in IntervalInSec to 10 and in MaxCycle to 3600, DataMine collects telemetry data for 10 hours.
+                              This data can be used for digital forensic investigations or post-mortem analytics.
+                         </p>
+                         
+                         <h3><a name="telemetryeditor"></a>TelemetryEditor.exe</h3>
+                         <p>The <strong>Telemetry Editor</strong> is used to show or modify performance counters configured in Telemetry.ini and similar files.
+                            It allows you to modify an existing telemetry configuration file or to create a new 
+                            telemetry configuration file ("Clone").</p>
+                         <p>&nbsp;</p>
+                         <img src="../images/TelemetryEditor.png" class="img-responsive" alt="Telemetry Editor">
+                         <p>&nbsp;</p>
+                         <p>Use a ">>" button on the right side to select a new performance counter. NOTE: Only single-instance
+                            performance counter types are supported (no multi-instance types, such as &lt;All Instances&gt; or *).</p>
+                         <p>&nbsp;</p>
+                         <img src="../images/TelemetryChooseCounter.png" class="img-responsive" alt="Telemetry Choose Counters">
+                         <p>&nbsp;</p>
+                         <p>The Telemetry Editor can be launched from the Simload Runner.</p>
+
+                         <h3><a name="getvideoadapter"></a>GetVideoAdapters.exe (Enterprise Package)</h3>
+                         <p><strong>GetVideoAdapters</strong> in the Tools\Telemetry folder is a command-line tool that shows the video adapters
+                              that are visible for the Telemetry Collector included in the Avatar.</p>
+                         <p>&nbsp;</p>
+                         <img src="../images/GetVideoAdapters.png" class="img-responsive" alt="GetVideoAdapters">
+                         <p>&nbsp;</p>
+                    </div>
+
+                    <div class="docs-thumb">
+                         <h2><a name="sdk"></a>Tools Included in the Simload SDK</h2>
+                         <h3>TempObjectInfo.exe</h3>
+                         <p><strong>TempObjectInfo</strong> shows the temporary object that is created in the registry 
+                              when running a Simload. This is helpful when creating new Simloads.
+                         </p>
+                         <p>&nbsp;</p>
+                         <img src="../images/TempObjectInfo.png" class="img-responsive" alt="TempObjectInfo">
+                         <p>&nbsp;</p>
+                         <h3>WinInfo.exe</h3>
+                         <p><strong>WinInfo</strong> shows process ID, window handle, process name, file name, window 
+                              title and window position of each application currently running in the user 
+                              session. The underlying methods to retrieve this data are identical to the 
+                              methods used in simloads. The displayed information can be very useful when 
+                              modifying a side-by-side .ini file.
+                         </p>
+                         <p>&nbsp;</p>
+                         <img src="../images/WinInfo.png" class="img-responsive" alt="WinInfo">
+                         <p>&nbsp;</p>
+                         <h3>WinInfoPlus.exe</h3>
+                         <p><strong>WinInfoPlus</strong> shows process ID, window handle, process name, file name, window 
+                              title, window position, window state, user name and domain of each application currently running 
+                              in the user session. 
+                         </p>
+                         <p>&nbsp;</p>
+                         <img src="../images/WinInfoPlus.png" class="img-responsive" alt="WinInfoPlus">
+                         <p>&nbsp;</p>
+                         <h3>ProcInfo.exe</h3>
+                         <p><strong>ProcInfo</strong> shows process name, process ID, file name, user name and domain 
+                             of each process visible from the user session. 
+                         </p>
+                         <p>&nbsp;</p>
+                         <img src="../images/ProcInfo.png" class="img-responsive" alt="ProcInfo">
+                         <p>&nbsp;</p>
+                         <h3>WtsProcInfo.exe</h3>
+                         <p><strong>WtsProcInfo</strong> uses the Windows Terminal Server API to show process name, process ID,  
+                            file name, session ID, user name, domain and SID type of each process visible from the user session. 
+                         </p>
+                         <p>&nbsp;</p>
+                         <img src="../images/WtsProcInfo.png" class="img-responsive" alt="WtsProcInfo">
+                         <p>&nbsp;</p>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+
+<!-- End Docs Section -->
+
+
+<!-- Begin Footer Section -->
+<script src="../js/eucscore-folder-footer.js"></script>
+<!-- End Footer Section -->
+
+
+<!-- Back top -->
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+<!-- SCRIPTS -->
+
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.parallax.js"></script>
+<script src="../js/custom.js"></script>
+
+</body>
+</html>
