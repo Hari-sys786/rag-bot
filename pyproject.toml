@@ -1,26 +1,48 @@
-[project]
-name = "rag-bot"
-version = "0.1.0"
-description = ""
-authors = [
-    {name = "Hari-sys786",email = "harimanie@gmail.com"}
-]
-readme = "README.md"
-requires-python = ">=3.11,<4.0"
-dependencies = [
-    "requests (>=2.32.4,<3.0.0)",
-    "tqdm (>=4.67.1,<5.0.0)",
-    "pdfplumber (>=0.11.7,<0.12.0)",
-    "gradio (>=5.41.1,<6.0.0)",
-    "langchain-ollama (>=0.3.6,<0.4.0)",
-    "chromadb (>=1.0.16,<2.0.0)"
-    
-]
+# [project]
+# name = "rag-bot"
+# version = "0.1.0"
+# description = ""
+# authors = [
+#     {name = "Hari-sys786",email = "harimanie@gmail.com"}
+# ]
+# readme = "README.md"
+# requires-python = ">=3.11,<4.0"
+# dependencies = [
+#     "requests (>=2.32.4,<3.0.0)",
+#     "tqdm (>=4.67.1,<5.0.0)",
+#     "pdfplumber (>=0.11.7,<0.12.0)",
+#     "gradio (>=5.41.1,<6.0.0)",
+#     "langchain-ollama (>=0.3.6,<0.4.0)",
+#     "chromadb (>=1.0.16,<2.0.0)"
+# ]
 
+# [tool.poetry]
+# packages = [{include = "rag_bot", from = "src"}]
+
+
+# [build-system]
+# requires = ["poetry-core>=2.0.0,<3.0.0"]
+# build-backend = "poetry.core.masonry.api"
 [tool.poetry]
-packages = [{include = "rag_bot", from = "src"}]
+name        = "rag-bot"
+version     = "0.1.0"
+description = ""
+readme      = "README.md"
+authors     = ["Hari-sys786 <harimanie@gmail.com>"]
+# this replaces PEP-621's `requires-python`
+python      = ">=3.11,<4.0"
+# let Poetry know where your package lives
+packages    = [{ include = "rag_bot", from = "src" }]
 
+[tool.poetry.dependencies]
+python           = ">=3.11,<4.0"
+requests         = ">=2.32.4,<3.0.0"
+tqdm             = ">=4.67.1,<5.0.0"
+pdfplumber       = ">=0.11.7,<0.12.0"
+gradio           = ">=5.41.1,<6.0.0"
+langchain-ollama = ">=0.3.6,<0.4.0"
+chromadb         = ">=1.0.16,<2.0.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires    = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
