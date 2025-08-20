@@ -7,6 +7,7 @@ from langchain_ollama import ChatOllama
 # Setup: paths and models
 CHROMA_DB_DIR = Path(__file__).parent.parent.parent.parent / "data" / "chroma_db"
 EMBED_MODEL_NAME = "BAAI/bge-base-en-v1.5"
+# EMBED_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 OLLAMA_MODEL = "phi3"  # or "deepseek-coder", "mistral", etc.
 
 # Load embedding model and ChromaDB, all at module level for speed

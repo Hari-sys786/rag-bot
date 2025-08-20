@@ -18,16 +18,18 @@ class QueryResponse(BaseModel):
 def query_rag(request: QueryRequest):
     try:
         # Get answer and print sources in the terminal
-        context_chunks, metadatas = answer_question(
-            request.question, top_k=request.top_k
-        )
-        answer = context_chunks  # The function returns answer as first value
+        # context_chunks, metadatas = answer_question(
+        #     request.question, top_k=request.top_k
+        # )
+        # answer = context_chunks  # The function returns answer as first value
 
-        # Build readable sources
-        sources = [
-            f"{meta['vendor']} - {meta['document']} (page: {meta.get('page', 'n/a')}, chunk: {meta['chunk']})"
-            for meta in metadatas
-        ]
+        # # Build readable sources
+        # sources = [
+        #     f"{meta['vendor']} - {meta['document']} (page: {meta.get('page', 'n/a')}, chunk: {meta['chunk']})"
+        #     for meta in metadatas
+        # ]
+        # return QueryResponse(answer=answer, sources=sources)
+        answer, sources = answer_question(request.question, top_k=request.top_k)
         return QueryResponse(answer=answer, sources=sources)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
