@@ -22,9 +22,19 @@ def retrieve_context(query, top_k=5):
     query_embedding = embedder.encode(query).tolist()
     results = collection.query(
         query_embeddings=[query_embedding],
-        n_results=top_k
+        n_results=top_k,
+        include=["documents", "metadatas", "distances"]
     )
-    return results['documents'][0], results['metadatas'][0]
+        # Check if any result is good enough
+    distances = results.get("distances", [[]])[0]
+    documents = results.get("documents", [[]])[0]
+    metadatas = results.get("metadatas", [[]])[0]
+
+    # If all distances are too large (low similarity), treat as "no answer"
+    if not documents or all(d > top_k for d in distances):
+        return [], []
+
+    return documents, metadatas
 
 def build_prompt(context_chunks, question):
     context = "\n\n".join(context_chunks)
@@ -45,6 +55,8 @@ def answer_question(question, top_k=2):
     t0 = time.time()
     context_chunks, metadatas = retrieve_context(question, top_k=top_k)
     print("[Timing] Retrieval:", time.time() - t0, "sec")
+    if not context_chunks:
+        return "❌ No relevant information found in the ingested documents.", []
     t1 = time.time()
     prompt = build_prompt(context_chunks, question)
     print("[Timing] Build prompt:", time.time() - t1, "sec")
